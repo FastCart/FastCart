@@ -1,0 +1,17 @@
+# IDEs
+.idea
+venv/
+
+# Backend
+*.pyc
+*.sqlite
+/backend/db.sqlite3
+/backend/errors.log
+/backend/media
+
+# Frontend
+frontend/node_modules/
+frontend/npm-debug.log
+frontend/public/
+
+/push.log
