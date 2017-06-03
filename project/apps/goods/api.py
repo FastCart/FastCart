@@ -14,7 +14,7 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
 
 class ApiGoodsView(views.APIView):
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.AllowAny,)
     authentication_classes = (CsrfExemptSessionAuthentication,)
 
     def get(self, request):
@@ -31,6 +31,8 @@ class ApiGoodsView(views.APIView):
             'description': last_goods.goods.description,
             'image': last_goods.goods.image,
             'cost': last_goods.weight * last_goods.goods.cost,
+            'cost_goods': last_goods.goods.cost,
+            'weight': last_goods.weight,
             'created': last_goods.created + datetime.timedelta(hours=7)
         }, status=status.HTTP_200_OK)
 
