@@ -36,9 +36,29 @@ class ApiGoodsView(views.APIView):
             'created': last_goods.created + datetime.timedelta(hours=7)
         }, status=status.HTTP_200_OK)
 
-    def post(self, request):
-        code = request.data.get('code', None)
-        weight = request.data.get('weight', 0)
+    # def post(self, request):
+    #     code = request.data.get('code', None)
+    #     weight = request.data.get('weight', 0)
+    #
+    #     print('+-'*20)
+    #     print('code =', code)
+    #     print('weight =', weight)
+    #     print('+-'*20)
+    #
+    #     goods = Goods.objects.get(code=code)
+    #
+    #     LastGoods.objects.create(
+    #         goods=goods,
+    #         weight=weight
+    #     )
+    #
+    #     return Response(status=status.HTTP_200_OK)
+
+
+class ApiPostGoodsView(views.APIView):
+    def get(self, request):
+        code = request.GET.get('code', None)
+        weight = request.GET.get('weight', 0)
 
         print('+-'*20)
         print('code =', code)
