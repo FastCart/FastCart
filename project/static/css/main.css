@@ -166,6 +166,19 @@ html, body {
     box-shadow: 0 0 10px #6DBDC5;
 }
 
+@media (max-width: 1200px) {
+    .main-block {
+        width: 860px;
+    }
+    .info-block {
+        width: 400px;
+    }
+    .img-block img {
+        width: 400px;
+        height: 260px;
+    }
+}
+
 /* History */
 
 .history h1 {
