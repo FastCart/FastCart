@@ -7,7 +7,7 @@
 
 ### Create VENV
 1. `sudo pip3 install virtualenv`
-2. `virtualenv venv --no-site-packages` 
+2. `virtualenv -p python3  venv --no-site-packages` 
 3. `source venv/bin/activate`
 4. `venv/bin/pip3 install -r requirements.txt`
 

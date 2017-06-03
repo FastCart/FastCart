@@ -19,7 +19,7 @@
 
 <body>
 <div class="container" id="no-product">
-    <h1>No goods</h1>
+    <h1 class="text-center" style="line-height: 100vh; font-weight: bold; margin-top: -20px;">Добро пожаловать!</h1>
 </div>
 
 <div class="container" id="info-product" style="display: none;">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-md-5">
-            <h1 id="title"></h1>
+            <h1 id="name"></h1>
             <div class="info" id="description">Описание:</div>
             <div class="info cost" id="cost">136 руб</div>
             <div class="info costinf">---</div>
@@ -92,7 +92,7 @@
                     console.log(data);
                     $('#name').html(data.name);
                     $('#image').attr('src', data.image);
-                    $('#cost').html(data.cost + '$');
+                    $('#cost').html(data.cost + ' руб.');
                     $('#description').html(data.description);
 {#                    $('#data').html(#}
 {#                        'Name: ' + data.name +#}
