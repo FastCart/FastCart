@@ -4,7 +4,6 @@
 <html>
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,77 +11,35 @@
     <meta name="author" content="">
 
     <title>FastCart</title>
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/portfolio-item.css" %}" rel="stylesheet">
+    <link href="{% static "css/main.css" %}" rel="stylesheet">
 
 </head>
 
 <body>
-<div class="container" id="welcome">
-    <h1 class="text-center" style="line-height: 100vh; font-weight: bold; margin-top: -20px;">Добро пожаловать!</h1>
+
+<div class="welcome temp-block">Добро пожаловать!</div>
+<div class="no-product temp-block">Нет продукта!</div>
+
+<div class="block-ok">
+    <div class="block-ok-inner"></div>
 </div>
 
-<div class="container" id="no-product">
-    <h1 class="text-center" style="line-height: 100vh; font-weight: bold; margin-top: -20px;">Нет продукта</h1>
-</div>
-
-<div class="container" id="info-product" style="display: none;">
-    <div class="row">
-
-        <div class="col-md-7">
-            <img class="img-responsive" src="" id="image" alt="">
-        </div>
-
-        <div class="col-md-5">
-            <h1 id="name"></h1>
-            <div class="info" id="description">Описание:</div>
-            <div>
-                <div class="info cost" id="cost">0 руб</div>
-                <div class="info costinf" id="costinf">---</div>
-            </div>
+<div class="main-block" style="display: none">
+    <div class="img-block">
+        <img src="" alt="">
+    </div>
+    <div class="info-block">
+        <h1>Пусто</h1>
+        <div class="country">Из Европы</div>
+        <p></p>
+        <div class="footer">
+            <div class="cost">0 ₽</div>
+            <button class="btn">Купить</button>
         </div>
     </div>
-    <div class="row">
-
-        <div class="col-lg-12">
-            <h3 class="page-header">Похожие товары</h3>
-        </div>
-
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item"
-                     src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item"
-                     src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item"
-                     src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item"
-                     src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-
-    </div>
-
 </div>
 
 <script src="{% static "js/jquery.js" %}"></script>
-
-<script src="{% static "js/bootstrap.min.js" %}"></script>
 
 <script>
     var currentId = 0;
@@ -96,28 +53,19 @@
                 if (currentId !== data.id) {
                     currentId = data.id;
                     console.log(data);
-                    $('#name').html(data.name);
-                    $('#image').attr('src', data.image);
-                    $('#cost').html(data.cost + ' руб.');
-                    $('#description').html(data.description);
+                    $('.info-block h1').html(data.name);
+                    $('.img-block img').attr('src', data.image);
+                    $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
+                    $('.info-block p').html(data.description);
                     $('#costinf').html('Вес: ' + data.weight + '<br>' + 'Цена: ' + 'data.cost');
-{#                    $('#data').html(#}
-{#                        'Name: ' + data.name +#}
-{#                        '<br>Cost: ' + data.cost +#}
-{#                        '<br>Desc: ' + data.description +#}
-{#                        '<br>created: ' + data.created +#}
-{#                        '<br>cost_goods: ' + data.cost_goods +#}
-{#                        '<br>weight: ' + data.weight +#}
-{#                        '<img src="' + data.image + '" alt="">'#}
-{#                    );#}
 
                     if (data.name === 'none' || data.name === undefined) {
-                        $('#info-product').hide();
-                        $('#no-product').show();
+                        $('.main-block').hide();
+                        $('.no-product').show();
                     } else {
-                        $('#info-product').show();
-                        $('#no-product').hide();
-                        $('#welcome').hide();
+                        $('.main-block').show();
+                        $('.no-product').hide();
+                        $('.welcome').hide();
                     }
                 }
             }
@@ -128,6 +76,14 @@
         var timerId = setInterval(function () {
             getData();
         }, 1000);
+    });
+
+    $('.btn').click(function() {
+        $('.block-ok').fadeIn('fast', function() {
+            setTimeout(function () {
+                $('.block-ok').fadeOut('fast');
+            }, 1000);
+        });
     });
 </script>
 
