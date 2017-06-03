@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     outline: 0;
+    border: none;
 }
 
 html, body {
@@ -120,6 +121,11 @@ html, body {
     outline:none !important;
 }
 
+.btn, .btn:active, .btn:focus, .btn::-moz-focus-inner {
+    outline: none !important;
+    border: 0;
+}
+
 .block-ok {
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.8);
@@ -145,7 +151,7 @@ html, body {
     margin: auto;
     border-radius: 100%;
     background-color: white;
-    background-image: url("http://balancestaffing.com/wp-content/uploads/2016/04/skilled-trades-icons2.png");
+    background-image: url("../img/check.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 240px;
