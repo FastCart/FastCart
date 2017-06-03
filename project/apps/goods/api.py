@@ -39,6 +39,12 @@ class ApiGoodsView(views.APIView):
     def post(self, request):
         code = request.data.get('code', None)
         weight = request.data.get('weight', 0)
+
+        print('+-'*20)
+        print('code =', code)
+        print('weight =', weight)
+        print('+-'*20)
+
         goods = Goods.objects.get(code=code)
 
         LastGoods.objects.create(
