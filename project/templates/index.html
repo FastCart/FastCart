@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+<button id="ajax">GET</button>
+<div id="data"></div>
+
+<script>
+    var currentId = 0;
+
+    function getData() {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/api/goods/',
+            success: function (data) {
+                if (currentId !== data.id) {
+                    currentId = data.id;
+                    console.log(data);
+                    $('#data').html(
+                        'Name: ' + data.name +
+                        '<br>Cost: ' + data.cost +
+                        '<br>Desc: ' + data.description +
+                        '<br>created: ' + data.created +
+                        '<img src="' + data.image + '" alt="">'
+                    );
+                }
+            }
+        });
+    }
+
+    $('#ajax').click(function () {
+        getData();
+    });
+
+    $(function () {
+        var timerId = setInterval(function () {
+            getData();
+        }, 1000);
+    });
+</script>

@@ -2,7 +2,7 @@
 
 
 # Stack
-* `Django 1.10`
+* `Django 1.11`
 
 
 ### Create VENV
@@ -13,13 +13,12 @@
 
 
 ### API
-* **/api/goods/** `GET` (current product)
-* **/api/session/** `GET` (current goods), `PUT` ()
+* **/api/goods/** `GET` (current product), `POST` (params: code, weight)
 
 
 ### Migrations:
 ```
-source ../venv/bin/activate &&
-../venv/bin/python3.5 manage.py makemigrations &&
-../venv/bin/python3.5 manage.py migrate
+source venv/bin/activate &&
+venv/bin/python3.5 manage.py makemigrations &&
+venv/bin/python3.5 manage.py migrate
 ```
