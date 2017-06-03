@@ -34,7 +34,7 @@ html, body {
 .main-block {
     width: 1060px;
     height: 380px;
-    padding: 0 50px;
+    padding: 0 20px;
     box-sizing: content-box;
     margin: 0 auto;
     margin-top: calc(50vh - 180px);
@@ -168,14 +168,13 @@ html, body {
 
 @media (max-width: 1200px) {
     .main-block {
-        width: 760px;
-        margin: 0 auto;
+        width: 860px;
     }
     .info-block {
-        width: 350px;
+        width: 400px;
     }
     .img-block img {
-        width: 350px;
+        width: 400px;
         height: 230px;
     }
     .info-block p {
@@ -190,7 +189,7 @@ html, body {
     }
 
     .footer {
-        width: 350px;
+        width: 400px;
     }
 }
 
