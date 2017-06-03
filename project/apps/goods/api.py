@@ -1,11 +1,11 @@
 import datetime
-from django.utils import timezone
 
+from django.utils import timezone
 from rest_framework import views, permissions, status
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 
 from project.apps.goods.models import Goods, LastGoods
-from rest_framework.authentication import SessionAuthentication
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -28,6 +28,7 @@ class ApiGoodsView(views.APIView):
         return Response({
             'id': last_goods.id,
             'name': last_goods.goods.name,
+            'code': last_goods.goods.code,
             'description': last_goods.goods.description,
             'image': last_goods.goods.image,
             'cost': last_goods.weight * last_goods.goods.cost,
@@ -36,23 +37,23 @@ class ApiGoodsView(views.APIView):
             'created': last_goods.created + datetime.timedelta(hours=7)
         }, status=status.HTTP_200_OK)
 
-    # def post(self, request):
-    #     code = request.data.get('code', None)
-    #     weight = request.data.get('weight', 0)
-    #
-    #     print('+-'*20)
-    #     print('code =', code)
-    #     print('weight =', weight)
-    #     print('+-'*20)
-    #
-    #     goods = Goods.objects.get(code=code)
-    #
-    #     LastGoods.objects.create(
-    #         goods=goods,
-    #         weight=weight
-    #     )
-    #
-    #     return Response(status=status.HTTP_200_OK)
+        # def post(self, request):
+        #     code = request.data.get('code', None)
+        #     weight = request.data.get('weight', 0)
+        #
+        #     print('+-'*20)
+        #     print('code =', code)
+        #     print('weight =', weight)
+        #     print('+-'*20)
+        #
+        #     goods = Goods.objects.get(code=code)
+        #
+        #     LastGoods.objects.create(
+        #         goods=goods,
+        #         weight=weight
+        #     )
+        #
+        #     return Response(status=status.HTTP_200_OK)
 
 
 class ApiPostGoodsView(views.APIView):
@@ -60,16 +61,41 @@ class ApiPostGoodsView(views.APIView):
         code = request.GET.get('code', None)
         weight = request.GET.get('weight', 0)
 
-        print('+-'*20)
+        print('+-' * 20)
         print('code =', code)
         print('weight =', weight)
-        print('+-'*20)
+        print('+-' * 20)
 
         goods = Goods.objects.get(code=code)
 
         LastGoods.objects.create(
             goods=goods,
-            weight=weight
+            weight=weight,
+            is_bought=request.GET.get('is_bought', False)
         )
 
         return Response(status=status.HTTP_200_OK)
+
+
+class ApiListGoodsView(views.APIView):
+    def get(self, request):
+        goods = LastGoods.objects.filter(
+            is_bought=True,
+            created__gte=timezone.now() - datetime.timedelta(minutes=60)
+        ).order_by('-id')[:10]
+
+        r_goods = []
+
+        for g in goods:
+            r_goods.append({
+                'id': g.id,
+                'name': g.goods.name,
+                'description': g.goods.description,
+                'image': g.goods.image,
+                'cost': g.weight * g.goods.cost,
+                'cost_goods': g.goods.cost,
+                'weight': g.weight,
+                'created': g.created + datetime.timedelta(hours=7)
+            })
+
+        return Response(r_goods, status=status.HTTP_200_OK)

@@ -43,6 +43,7 @@
 
 <script>
     var currentId = 0;
+    var currentData = {};
 
     function getData() {
         $.ajax({
@@ -69,6 +70,8 @@
                     $('.no-product').hide();
                     $('.welcome').hide();
                 }
+
+                currentData = data;
             }
         });
     }
@@ -84,6 +87,12 @@
             setTimeout(function () {
                 $('.block-ok').fadeOut('fast');
             }, 1000);
+        });
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/api/post-goods/?is_bought=1&code='+currentData.code+'&weight='+currentData.weight
         });
     });
 </script>

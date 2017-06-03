@@ -13,6 +13,12 @@ html, body {
     background: #fff;
 }
 
+/* Main page */
+
+.no-product {
+    display: none;
+}
+
 .no-product {
     display: none;
 }
@@ -39,11 +45,11 @@ html, body {
 .img-block img {
     border-radius: 9px;
     background-color: #ffffff;
-    border: solid 1px #eaeaea;
     padding: 10px;
     width: 500px;
     height: 360px;
     overflow: hidden;
+    border: solid 1px #eaeaea;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -156,4 +162,50 @@ html, body {
     background-position: center center;
     background-size: 240px;
     box-shadow: 0 0 10px #6DBDC5;
+}
+
+/* History */
+
+.history h1 {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.04;
+    color: #414251;
+    margin-bottom: 30px;
+}
+
+.history .history-elem {
+    border-radius: 3px;
+    border: solid 1px #eaeaea;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 70px;
+    margin-top: 20px;
+}
+
+.history img {
+    width: 100px;
+    height: 70px;
+    float: left;
+}
+
+.history .title {
+    float: left;
+    line-height: 70px;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.history .cost {
+    float: right;
+    line-height: 70px;
+    font-size: 30px;
+    padding-right: 20px;
+}
+
+.sum {
+    line-height: 70px;
+    font-size: 30px;
+    text-align: right;
+    padding-bottom: 50px;
 }
