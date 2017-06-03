@@ -13,6 +13,7 @@ footer {
 
 img {
     border: 10px solid lightgray;
+    max-height: 430px;
 
 }
 
@@ -27,20 +28,38 @@ ul {
 
 .info {
     background-color: lightgray;
-    font-size: 1.5em;
+    font-size: 20px;
     padding: 10px 10px 10px 10px;
     margin-top: 20px;
     width: 100%;
 }
 
+h1 + .info {
+    max-height: 350px;
+    height: 350px;
+}
+
 .cost {
     float: left;
-    width: 45%;
-    margin-right: 10px;
+    width: 50%;
+    font-size: 30px;
+    padding: 40px;
+    text-align: center;
+    margin-right: 0px;
     background-color: limegreen;
+
+    font-weight: bold;
 }
 
 .costinf {
     float: right;
-    width: 45%;
+    width: 50%;
+    height: 122px;
+    font-size: 12px;
+    background-color: greenyellow;
+}
+
+.cost, .costinf {
+    color: white;
+
 }
