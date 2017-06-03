@@ -58,15 +58,16 @@
                     $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
                     $('.info-block p').html(data.description);
                     $('#costinf').html('Вес: ' + data.weight + '<br>' + 'Цена: ' + 'data.cost');
+                }
 
-                    if (data.name === 'none' || data.name === undefined) {
-                        $('.main-block').hide();
-                        $('.no-product').show();
-                    } else {
-                        $('.main-block').show();
-                        $('.no-product').hide();
-                        $('.welcome').hide();
-                    }
+
+                if (data.name === 'none' || data.name === undefined) {
+                    $('.main-block').hide();
+                    $('.no-product').show();
+                } else {
+                    $('.main-block').show();
+                    $('.no-product').hide();
+                    $('.welcome').hide();
                 }
             }
         });
@@ -78,8 +79,8 @@
         }, 1000);
     });
 
-    $('.btn').click(function() {
-        $('.block-ok').fadeIn('fast', function() {
+    $('.btn').click(function () {
+        $('.block-ok').fadeIn('fast', function () {
             setTimeout(function () {
                 $('.block-ok').fadeOut('fast');
             }, 1000);
