@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Последние покупки</title>
+    <link href="{% static "css/main.css" %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="main-block history" style="margin-top: 50px">
+    <h1>Последние покупки</h1>
+    <div class="history-list"></div>
+    <div class="sum"></div>
+</div>
+
+<script src="{% static "js/jquery.js" %}"></script>
+
+<script>
+    var currentId = 0;
+
+    function getData() {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/api/list-goods/',
+            success: function (data) {
+                var html = '';
+                var sum = 0;
+                for (var i in data) {
+                    html += '' +
+                        '<div class="history-elem">' +
+                        '<img src="' + data[i].image + '"/>' +
+                        '<div class="title">' + data[i].name + '</div>' +
+                        '<div class="cost">' + data[i].cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽' + '</div>' +
+                        '</div>';
+                    sum += data[i].cost;
+                }
+
+                $('.history-list').html(html);
+                $('.sum').html('Общая сумма: ' + sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
+
+{#                if (currentId !== data.id) {#}
+{#                    currentId = data.id;#}
+{#                    console.log(data);#}
+{#                    $('.info-block h1').html(data.name);#}
+{#                    $('.img-block img').attr('src', data.image);#}
+{#                    $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');#}
+{#                    $('.info-block p').html(data.description);#}
+{#                    $('#costinf').html('Вес: ' + data.weight + '<br>' + 'Цена: ' + 'data.cost');#}
+{#                }#}
+            }
+        });
+    }
+
+    getData();
+
+    $(function () {
+        var timerId = setInterval(function () {
+            getData();
+        }, 3000);
+    });
+</script>
+
+</body>
+
+</html>
