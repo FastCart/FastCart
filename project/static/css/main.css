@@ -168,14 +168,29 @@ html, body {
 
 @media (max-width: 1200px) {
     .main-block {
-        width: 860px;
+        width: 760px;
+        margin: 0 auto;
     }
     .info-block {
-        width: 400px;
+        width: 350px;
     }
     .img-block img {
-        width: 400px;
-        height: 260px;
+        width: 350px;
+        height: 230px;
+    }
+    .info-block p {
+        font-size: 16px;
+    }
+    .info-block h1 {
+        font-size: 38px;
+    }
+
+    .info-block .country {
+        font-size: 20px;
+    }
+
+    .footer {
+        width: 350px;
     }
 }
 
