@@ -1,0 +1,66 @@
+
+body {
+    padding-top: 0px;
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/greyzz.png");
+}
+
+.portfolio-item {
+    margin-bottom: 25px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+img {
+    border: 10px solid lightgray;
+    max-height: 430px;
+
+}
+
+img:hover {
+    border: 10px solid #ff5e5e;
+}
+
+ul {
+    list-style: none;
+    margin-left: 0px !important;
+}
+
+.info {
+    background-color: lightgray;
+    font-size: 20px;
+    padding: 10px 10px 10px 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+h1 + .info {
+    max-height: 350px;
+    height: 350px;
+}
+
+.cost {
+    float: left;
+    width: 50%;
+    font-size: 30px;
+    padding: 40px;
+    text-align: center;
+    margin-right: 0px;
+    background-color: limegreen;
+
+    font-weight: bold;
+}
+
+.costinf {
+    float: right;
+    width: 50%;
+    height: 122px;
+    font-size: 12px;
+    background-color: greenyellow;
+}
+
+.cost, .costinf {
+    color: white;
+
+}

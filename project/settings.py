@@ -103,8 +103,29 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Static
+STATIC_URL = '/project/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'project/static/'),
+)
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+# Logs
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

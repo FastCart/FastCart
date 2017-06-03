@@ -1,14 +1,117 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script type="text/javascript"
-            src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Portfolio Item - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/portfolio-item.css" %}" rel="stylesheet">
+
 </head>
 
 <body>
 
-<button id="ajax">GET</button>
-<div id="data"></div>
+
+<!-- Page Content -->
+<div class="container">
+{##}
+{#    <!-- Portfolio Item Heading -->#}
+{#    <div class="row">#}
+{#        <div class="col-lg-12">#}
+{#            <h1 class="page-header">#}
+{#            </h1>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- /.row -->#}
+{##}
+{#    <!-- Portfolio Item Row -->#}
+{#    <div class="row">#}
+{##}
+{#        <div class="col-md-7">#}
+{#            <img class="img-responsive" src="img/pomidor.jpg" alt="">#}
+{#        </div>#}
+{##}
+{#        <div class="col-md-5">#}
+{#            <h1>Помидоры ташкент</h1>#}
+{#            <div class="info">Описание:</div>#}
+{#            <div class="info cost">136 руб</div>#}
+{#            <div class="info costinf">Информация#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#    <!-- /.row -->#}
+{##}
+{#    <!-- Related Projects Row -->#}
+{#    <div class="row">#}
+{##}
+{#        <div class="col-lg-12">#}
+{#            <h3 class="page-header">Похожие товары</h3>#}
+{#        </div>#}
+{##}
+{#        <div class="col-sm-3 col-xs-6">#}
+{#            <a href="#">#}
+{#                <img class="img-responsive portfolio-item"#}
+{#                     src="http://placehold.it/500x300" alt="">#}
+{#            </a>#}
+{#        </div>#}
+{##}
+{#        <div class="col-sm-3 col-xs-6">#}
+{#            <a href="#">#}
+{#                <img class="img-responsive portfolio-item"#}
+{#                     src="http://placehold.it/500x300" alt="">#}
+{#            </a>#}
+{#        </div>#}
+{##}
+{#        <div class="col-sm-3 col-xs-6">#}
+{#            <a href="#">#}
+{#                <img class="img-responsive portfolio-item"#}
+{#                     src="http://placehold.it/500x300" alt="">#}
+{#            </a>#}
+{#        </div>#}
+{##}
+{#        <div class="col-sm-3 col-xs-6">#}
+{#            <a href="#">#}
+{#                <img class="img-responsive portfolio-item"#}
+{#                     src="http://placehold.it/500x300" alt="">#}
+{#            </a>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#    <!-- /.row -->#}
+{##}
+{#    <hr>#}
+{##}
+{#    <!-- Footer -->#}
+{#    <footer>#}
+{#        <div class="row">#}
+{#            <div class="col-lg-12">#}
+{#                <p> &copy; ProductBot</p>#}
+{#            </div>#}
+{#        </div>#}
+{#        <!-- /.row -->#}
+{#    </footer>#}
+    <div id="data"></div>
+
+</div>
+
+<script src="{% static "js/jquery.js" %}"></script>
+
+<script src="{% static "js/bootstrap.min.js" %}"></script>
 
 <script>
     var currentId = 0;
@@ -36,13 +139,13 @@
         });
     }
 
-    $('#ajax').click(function () {
-        getData();
-    });
-
     $(function () {
         var timerId = setInterval(function () {
             getData();
         }, 1000);
     });
 </script>
+
+</body>
+
+</html>
