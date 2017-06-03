@@ -17,14 +17,14 @@ footer {
 }
 
 img {
-    border: 10px solid lightgray;
+    /*border: 10px solid lightgray;*/
     max-height: 430px;
 
 }
 
-img:hover {
-    border: 10px solid #ff5e5e;
-}
+/*img:hover {*/
+    /*border: 10px solid #ff5e5e;*/
+/*}*/
 
 ul {
     list-style: none;
@@ -32,7 +32,6 @@ ul {
 }
 
 .info {
-    background-color: lightgray;
     font-size: 20px;
     padding: 10px 10px 10px 10px;
     margin-top: 20px;
@@ -51,7 +50,6 @@ h1 + .info {
     padding: 40px;
     text-align: center;
     margin-right: 0px;
-    background-color: limegreen;
 
     font-weight: bold;
 }
@@ -61,7 +59,6 @@ h1 + .info {
     width: 50%;
     height: 122px;
     font-size: 12px;
-    background-color: greenyellow;
 }
 
 .cost, .costinf {

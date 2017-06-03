@@ -18,9 +18,11 @@
 </head>
 
 <body>
+<div class="container" id="no-product">
+    <h1>No goods</h1>
+</div>
 
-
-<div class="container">
+<div class="container" id="info-product" style="display: none;">
     <div class="row">
 
         <div class="col-md-7">
@@ -69,9 +71,6 @@
         </div>
 
     </div>
-    <!-- /.row -->
-
-    <div id="data"></div>
 
 </div>
 
@@ -93,17 +92,25 @@
                     console.log(data);
                     $('#name').html(data.name);
                     $('#image').attr('src', data.image);
-                    $('#cost').html(data.cost + '$')
+                    $('#cost').html(data.cost + '$');
                     $('#description').html(data.description);
-                    $('#data').html(
-                        'Name: ' + data.name +
-                        '<br>Cost: ' + data.cost +
-                        '<br>Desc: ' + data.description +
-                        '<br>created: ' + data.created +
-                        '<br>cost_goods: ' + data.cost_goods +
-                        '<br>weight: ' + data.weight +
-                        '<img src="' + data.image + '" alt="">'
-                    );
+{#                    $('#data').html(#}
+{#                        'Name: ' + data.name +#}
+{#                        '<br>Cost: ' + data.cost +#}
+{#                        '<br>Desc: ' + data.description +#}
+{#                        '<br>created: ' + data.created +#}
+{#                        '<br>cost_goods: ' + data.cost_goods +#}
+{#                        '<br>weight: ' + data.weight +#}
+{#                        '<img src="' + data.image + '" alt="">'#}
+{#                    );#}
+
+                    if (data.name === 'none' || data.name === undefined) {
+                        $('#info-product').hide();
+                        $('#no-product').show();
+                    } else {
+                        $('#info-product').show();
+                        $('#no-product').hide();
+                    }
                 }
             }
         });
