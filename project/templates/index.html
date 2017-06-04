@@ -24,9 +24,9 @@
     <div class="block-ok-inner"></div>
 </div>
 
-<div class="main-block" style="display: none">
+<div class="main-block">
     <div class="img-block">
-        <img src="" alt="">
+        <img src="" alt="product">
     </div>
     <div class="info-block">
         <h1>Пусто</h1>
@@ -38,6 +38,8 @@
         </div>
     </div>
 </div>
+
+<div class="list-block"></div>
 
 <script src="{% static "js/jquery.js" %}"></script>
 
@@ -58,17 +60,45 @@
                     $('.img-block img').attr('src', data.image);
                     $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
                     $('.info-block p').html(data.description);
-                    $('#costinf').html('Вес: ' + data.weight + '<br>' + 'Цена: ' + 'data.cost');
                 }
-
 
                 if (data.name === 'none' || data.name === undefined) {
                     $('.main-block').hide();
+                    $('.list-block').hide();
                     $('.no-product').show();
                 } else {
-                    $('.main-block').show();
+                    {#                    $('.main-block').show();#}
                     $('.no-product').hide();
                     $('.welcome').hide();
+                }
+
+                if (data.children.length > 0) {
+                    $('.main-block').hide();
+                    $('.list-block').show();
+
+                    var html = '';
+
+                    for (var i in data.children) {
+                        html += '' +
+                            '<div class="img-block">' +
+                            '<img src="' + data.children[i].image + '" alt="product">' +
+                            '<div class="img-text children" name="' + data.children[i].code + '">' + data.children[i].name +
+                            '</div>' +
+                            '</div>';
+                    }
+
+                    $('.list-block').html(html);
+
+                    $('.children').click(function () {
+                        $.ajax({
+                            type: 'GET',
+                            dataType: 'json',
+                            url: '/api/post-goods/?code=' + $(this).attr('name') + '&weight=' + currentData.weight
+                        });
+                    });
+                } else {
+                    $('.main-block').show();
+                    $('.list-block').hide();
                 }
 
                 currentData = data;
@@ -92,7 +122,7 @@
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: '/api/post-goods/?is_bought=1&code='+currentData.code+'&weight='+currentData.weight
+            url: '/api/post-goods/?is_bought=1&code=' + currentData.code + '&weight=' + currentData.weight
         });
     });
 </script>

@@ -6,6 +6,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 
 from project.apps.goods.models import Goods, LastGoods
+from project.apps.goods.serializers import GoodsSerializer
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -19,7 +20,7 @@ class ApiGoodsView(views.APIView):
 
     def get(self, request):
         last_goods = LastGoods.objects.filter(
-            created__gte=timezone.now() - datetime.timedelta(minutes=2)
+            created__gte=timezone.now() - datetime.timedelta(minutes=2),
         ).order_by('-id').first()
 
         if not last_goods:
@@ -34,7 +35,8 @@ class ApiGoodsView(views.APIView):
             'cost': last_goods.weight * last_goods.goods.cost,
             'cost_goods': last_goods.goods.cost,
             'weight': last_goods.weight,
-            'created': last_goods.created + datetime.timedelta(hours=7)
+            'created': last_goods.created + datetime.timedelta(hours=7),
+            'children': GoodsSerializer(last_goods.goods.children, many=True).data
         }, status=status.HTTP_200_OK)
 
         # def post(self, request):

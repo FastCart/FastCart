@@ -3,7 +3,10 @@ from .models import *
 
 
 class GoodsAdmin(admin.ModelAdmin):
-    fields = ('name', 'code', 'description', 'image', 'cost', 'created',)
+    fields = (
+        'name', 'code', 'description',
+        'image', 'parent', 'cost', 'created',
+    )
     list_display = ('name', 'code', 'cost', 'created',)
     list_filter = ('created',)
     readonly_fields = ('created',)
