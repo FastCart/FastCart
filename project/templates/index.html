@@ -112,6 +112,7 @@
                                 url: '/api/post-goods/?code=' + $(this).attr('name') + '&weight=' + currentData.weight,
                                 success: function (data) {
                                     getData();
+                                    timeDelay = 10000;
                                 }
                             });
 
@@ -142,6 +143,7 @@
                 }
 
                 currentData = data;
+                successData = true;
             }
         });
     }
@@ -179,7 +181,6 @@
                 start();
             }, timeDelay);
         }
-        
         start();
 
 {#        setTimeout(function () {#}
