@@ -53,14 +53,6 @@
             dataType: 'json',
             url: '/api/goods/',
             success: function (data) {
-                if (currentId !== data.id) {
-                    console.log(data);
-                    $('.info-block h1').html(data.name);
-                    $('.img-block img').attr('src', data.image);
-                    $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
-                    $('.info-block p').html(data.description);
-                }
-
                 if (data.name === 'none' || data.name === undefined) {
                     $('.main-block').hide();
                     $('.list-block').hide();
@@ -71,37 +63,45 @@
                     $('.welcome').hide();
                 }
 
-                if (currentId !== data.id && data.children.length > 0) {
-                    $('.main-block').hide();
-                    $('.list-block').show();
+                if (currentId !== data.id) {
+                    currentId = data.id;
+                    console.log(data);
+                    $('.info-block h1').html(data.name);
+                    $('.img-block img').attr('src', data.image);
+                    $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
+                    $('.info-block p').html(data.description);
 
-                    var html = '';
+                    if (data.children.length > 0) {
+                        $('.main-block').hide();
+                        $('.list-block').show();
 
-                    for (var i in data.children) {
-                        html += '' +
-                            '<div class="img-block">' +
-                            '<img src="' + data.children[i].image + '" alt="product">' +
-                            '<div class="img-text children" name="' + data.children[i].code + '">' + data.children[i].name +
-                            '</div>' +
-                            '</div>';
-                    }
+                        var html = '';
 
-                    $('.list-block').html(html);
+                        for (var i in data.children) {
+                            html += '' +
+                                '<div class="img-block">' +
+                                '<img src="' + data.children[i].image + '" alt="product">' +
+                                '<div class="img-text children" name="' + data.children[i].code + '">' + data.children[i].name +
+                                '</div>' +
+                                '</div>';
+                        }
 
-                    $('.children').click(function () {
-                        $.ajax({
-                            type: 'GET',
-                            dataType: 'json',
-                            url: '/api/post-goods/?code=' + $(this).attr('name') + '&weight=' + currentData.weight
+                        $('.list-block').html(html);
+
+                        $('.children').click(function () {
+                            $.ajax({
+                                type: 'GET',
+                                dataType: 'json',
+                                url: '/api/post-goods/?code=' + $(this).attr('name') + '&weight=' + currentData.weight
+                            });
                         });
-                    });
-                } else {
-                    $('.main-block').show();
-                    $('.list-block').hide();
+                    } else {
+                        $('.main-block').show();
+                        $('.list-block').hide();
+                    }
                 }
 
                 currentData = data;
-                currentId = data.id;
             }
         });
     }
