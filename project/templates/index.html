@@ -53,6 +53,7 @@
 <script>
     var currentId = 0;
     var currentData = {};
+    var timeDelay = 1000;
 
     function getData() {
         $.ajax({
@@ -80,6 +81,12 @@
                     $('.img-block img').attr('src', data.image);
                     $('.cost').html(data.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽');
                     $('.info-block p').html(data.description);
+
+                    if (data.parent) {
+                        timeDelay = 10000;
+                    } else {
+                        timeDelay = 1000;
+                    }
 
                     if (data.children.length > 0) {
                         $('.main-block').hide();
@@ -165,9 +172,19 @@
                 }, 1000);
         }, 2000);
 
-        var timerId = setInterval(function () {
+        function start() {
             getData();
-        }, 1000);
+
+            setTimeout(function () {
+                start();
+            }, timeDelay);
+        }
+        
+        start();
+
+{#        setTimeout(function () {#}
+{#            getData();#}
+{#        }, timeDelay);#}
     });
 
     $('.btn').click(function () {

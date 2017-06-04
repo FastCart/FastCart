@@ -36,7 +36,8 @@ class ApiGoodsView(views.APIView):
             'cost_goods': last_goods.goods.cost,
             'weight': last_goods.weight,
             'created': last_goods.created + datetime.timedelta(hours=7),
-            'children': GoodsSerializer(last_goods.goods.children, many=True).data
+            'children': GoodsSerializer(last_goods.goods.children, many=True).data,
+            'parent': last_goods.goods.parent_id
         }, status=status.HTTP_200_OK)
 
         # def post(self, request):
