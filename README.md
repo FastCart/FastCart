@@ -1,5 +1,5 @@
 # FastCart
-
+![FastCart](https://github.com/samsheff/FastCartMobile/blob/master/screenshots/fastcart%20logo.png?raw=true)
 
 # Stack
 * `Django 1.11`
