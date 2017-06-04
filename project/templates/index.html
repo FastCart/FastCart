@@ -54,7 +54,6 @@
             url: '/api/goods/',
             success: function (data) {
                 if (currentId !== data.id) {
-                    currentId = data.id;
                     console.log(data);
                     $('.info-block h1').html(data.name);
                     $('.img-block img').attr('src', data.image);
@@ -72,7 +71,7 @@
                     $('.welcome').hide();
                 }
 
-                if (currentId !== data.id && data.children.length > 0) {
+                if (data.children.length > 0) {
                     $('.main-block').hide();
                     $('.list-block').show();
 
@@ -102,6 +101,7 @@
                 }
 
                 currentData = data;
+                currentId = data.id;
             }
         });
     }
