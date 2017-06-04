@@ -72,7 +72,7 @@ class ApiPostGoodsView(views.APIView):
             created__gte=timezone.now() - datetime.timedelta(seconds=5),
         ).order_by('-id').first()
 
-        if last_goods and last_goods.weight == weight and last_goods.code == code:
+        if last_goods and last_goods.weight == int(weight) and last_goods.goods.code == code:
             print('copy')
             return Response(status=status.HTTP_200_OK)
 
