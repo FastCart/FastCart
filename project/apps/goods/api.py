@@ -1,4 +1,5 @@
 import datetime
+from unicodedata import decimal
 
 from django.utils import timezone
 from rest_framework import views, permissions, status
@@ -68,13 +69,13 @@ class ApiPostGoodsView(views.APIView):
         print('code =', code)
         print('weight =', weight)
 
-        last_goods = LastGoods.objects.filter(
-            created__gte=timezone.now() - datetime.timedelta(seconds=5),
-        ).order_by('-id').first()
+        # last_goods = LastGoods.objects.filter(
+        #     created__gte=timezone.now() - datetime.timedelta(seconds=5),
+        # ).order_by('-id').first()
 
-        if last_goods and last_goods.weight == int(weight) and last_goods.goods.code == code:
-            print('copy')
-            return Response(status=status.HTTP_200_OK)
+        # if last_goods and decimal(last_goods.weight) == weight and last_goods.goods.code == code:
+        #     print('copy')
+        #     return Response(status=status.HTTP_200_OK)
 
         print('+-' * 20)
         goods = Goods.objects.get(code=code)
