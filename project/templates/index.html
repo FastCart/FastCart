@@ -92,7 +92,10 @@
                             $.ajax({
                                 type: 'GET',
                                 dataType: 'json',
-                                url: '/api/post-goods/?code=' + $(this).attr('name') + '&weight=' + currentData.weight
+                                url: '/api/post-goods/?code=' + $(this).attr('name') + '&weight=' + currentData.weight,
+                                success: function (data) {
+                                    getData();
+                                }
                             });
                         });
                     } else {
