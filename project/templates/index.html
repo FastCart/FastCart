@@ -72,7 +72,7 @@
                     $('.welcome').hide();
                 }
 
-                if (data.children.length > 0) {
+                if (currentId !== data.id && data.children.length > 0) {
                     $('.main-block').hide();
                     $('.list-block').show();
 
