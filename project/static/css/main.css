@@ -30,6 +30,25 @@ html, body {
     line-height: 100vh;
 }
 
+.welcome {
+    /*background: url("/project/static/img/logo.jpg");*/
+    /*background-position: center 6vh;*/
+    /*background-size: auto 100%;*/
+    /*background-repeat: no-repeat;*/
+    width: 100%;
+    /*height: 100vh;*/
+    line-height: 50px;
+    margin-top: calc(50vh - 175px);
+}
+
+.welcome img {
+    width: 200px;
+}
+
+.welcome .welcome-text {
+    display: block;
+}
+
 .main-block, .list-block {
     width: 1110px;
     height: 380px;
@@ -259,4 +278,13 @@ html, body {
     font-size: 30px;
     text-align: right;
     padding-bottom: 50px;
+}
+
+.glasses {
+    opacity: 0;
+    position: absolute;
+    top: -200px;
+    left: -400px;
+    width: 400px;
+    z-index: 99999;
 }

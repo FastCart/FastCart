@@ -17,7 +17,14 @@
 
 <body>
 
-<div class="welcome temp-block">Добро пожаловать!</div>
+<img class="glasses" style="opacity: 0"
+     src="https://pbs.twimg.com/profile_images/498573487003299840/04ox7YAv.png"
+     alt="">
+
+<div class="welcome temp-block">
+    <img src="/project/static/img/logo.jpg" alt="">
+    <div class="welcome-text">Добро пожаловать!</div>
+</div>
 <div class="no-product temp-block">Нет продукта!</div>
 
 <div class="block-ok">
@@ -56,8 +63,11 @@
                 if (data.name === 'none' || data.name === undefined) {
                     $('.main-block').hide();
                     $('.list-block').hide();
-                    $('.no-product').show();
+                    if (!$('.welcome').is(":visible")) {
+                        $('.no-product').show();
+                    }
                 } else {
+                    $('.glasses').hide();
                     {#                    $('.main-block').show();#}
                     $('.no-product').hide();
                     $('.welcome').hide();
@@ -97,9 +107,29 @@
                                     getData();
                                 }
                             });
+
+{#                            $('.glasses').show();#}
+{##}
+{#                            $('.glasses').css({#}
+{#                                'width': '400px',#}
+{#                                'top': '-100px',#}
+{#                                'left': '-300px',#}
+{#                                'opacity': '0'#}
+{#                            }).animate({#}
+{#                                'top': $(window).height() - 100,#}
+{#                                'left': $(window).width() - 200,#}
+{#                                'opacity': '1'#}
+{#                            }, 500, function() {#}
+{#                                $('.glasses').css({#}
+{#                                    'opacity': '0'#}
+{#                                });#}
+{#                            });#}
                         });
                     } else {
-                        $('.main-block').show();
+                        if (data.name !== 'none' && data.name !== undefined) {
+                            $('.main-block').show();
+                        }
+
                         $('.list-block').hide();
                     }
                 }
@@ -110,6 +140,31 @@
     }
 
     $(function () {
+        $('.glasses').animate({
+            'width': '100px',
+            'top': $('.welcome img').position().top + 30,
+            'left': $('.welcome img').position().left + 50,
+            'opacity': '1'
+        }, 1000);
+
+        setInterval(function () {
+            $('.glasses').hide();
+            $('.welcome img').animate({
+                    'margin-left': '100%',
+                    'opacity': '0'
+                },
+                {
+                    step: function (now) {
+                        // in the step-callback (that is fired each step of the animation),
+                        // you can use the `now` paramter which contains the current
+                        // animation-position (`0` up to `angle`)
+                        $('.welcome img').css({
+                            transform: 'rotate(' + -now + 'deg)'
+                        });
+                    }
+                }, 1000);
+        }, 2000);
+
         var timerId = setInterval(function () {
             getData();
         }, 1000);
